@@ -1,9 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-
 import { ValidationPipe } from '@nestjs/common';
-
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import { AppModule } from './app.module';
 
 const cors = require('cors');
@@ -22,12 +19,11 @@ async function bootstrap() {
     }));
 
     const config = new DocumentBuilder()
-        .setTitle('My Application API')
-        .setDescription('My Application API')
+        .setTitle('Pendencies')
+        .setDescription('App for pendencies management.')
         .setVersion('1.0.0')
         .addBearerAuth()
         .addSecurityRequirements('bearer')
-        .setExternalDoc('/api-json', '/api-json')
         .build();
 
     const document = SwaggerModule.createDocument(app, config, {
@@ -35,14 +31,14 @@ async function bootstrap() {
     });
 
     const CustomOptions = {
-        customSiteTitle: 'My Application',
+        customSiteTitle: 'Pendencies',
     }
 
     SwaggerModule.setup('api', app, document, CustomOptions);
 
     // Insert Here
 
-    await app.listen(3000);
+    await app.listen(process.env.PORT ?? 3000);
 }
 
 bootstrap();
