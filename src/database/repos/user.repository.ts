@@ -1,6 +1,6 @@
 import IRepository from '../interfaces/IRepository';
 import IUser from 'src/modules/user/interfaces/IUser';
-import { UserDTO } from 'src/database/DTO/user.dto';
+import { UserDTO } from '../DTO/user.dto';
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
