@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO } from '../../database/DTO/user.dto';
+import { UserDTO } from '../../database/DTO/UserDTO';
 import { DatabaseService } from 'src/providers/database/database.service';
 
 @Injectable()
@@ -16,6 +16,10 @@ export class UserService {
 
   find(id: number) {
     return this.db.user.find(id);
+  }
+
+  findOne(userName: string) {
+    return this.db.user.findOne(userName);
   }
 
   update(id: number, userDTO: UserDTO) {
