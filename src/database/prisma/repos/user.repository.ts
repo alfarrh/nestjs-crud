@@ -1,8 +1,8 @@
-import IUser from 'src/modules/user/interfaces/IUser';
-import { UserDTO } from '../DTO/UserDTO';
+import IUser from 'src/modules/user/interfaces/user.interface';
+import { UserDTO } from '../../DTO/user.dto';
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import IUserRepository from '../interfaces/repos/IUserRepository';
+import IUserRepository from '../../interfaces/repos/userRepository.interface';
 
 @Injectable()
 export default class UserRepository
@@ -37,6 +37,8 @@ export default class UserRepository
 
   async findOne(userName: string): Promise<IUser | null> {
     const user = await this.user.findUnique({ where: { userName } });
+
+    if (user === null) return null;
 
     return {
       id: user.idUser,
