@@ -5,4 +5,8 @@ export class FormService {
   find() {
     return 'test';
   }
+
+  post() {
+    return 'test post';
+  }
 }
