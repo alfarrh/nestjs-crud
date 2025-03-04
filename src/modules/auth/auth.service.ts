@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import SignInDTO from 'src/database/DTO/singIn.dto';
+import SignInDTO from 'src/database/dto/singIn.dto';
 import { UserService } from 'src/modules/user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { UserDTO } from 'src/database/DTO/user.dto';
+import { UserDTO } from 'src/database/dto/user.dto';
 import IUser from 'src/modules/user/interfaces/user.interface';
 
 @Injectable()

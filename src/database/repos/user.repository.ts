@@ -1,8 +1,8 @@
 import IUser from 'src/modules/user/interfaces/user.interface';
-import { UserDTO } from '../../DTO/user.dto';
+import { UserDTO } from '../dto/user.dto';
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import IUserRepository from '../../interfaces/repos/userRepository.interface';
+import IUserRepository from '../interfaces/repos/userRepository.interface';
 
 @Injectable()
 export default class UserRepository

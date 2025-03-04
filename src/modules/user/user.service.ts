@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UserDTO } from '../../database/DTO/user.dto';
+import { UserDTO } from '../../database/dto/user.dto';
 import { DatabaseService } from 'src/providers/database/database.service';
 import IUser from './interfaces/user.interface';
 
