@@ -1,28 +1,37 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserDTO } from '../../database/DTO/user.dto';
 import { DatabaseService } from 'src/providers/database/database.service';
+import IUser from './interfaces/user.interface';
 
 @Injectable()
 export class UserService {
   constructor(private db: DatabaseService) {}
 
-  create(userDTO: UserDTO) {
-    return this.db.user.create(userDTO);
+  async create(userDTO: UserDTO): Promise<IUser | null> {
+    if (this.db.user.findByUsername(userDTO.userName) !== null) {
+      throw new HttpException('User already exists.', HttpStatus.BAD_REQUEST);
+    }
+
+    return await this.db.user.create(userDTO);
   }
 
-  findAll() {
-    return this.db.user.findAll();
+  async findAll() {
+    return await this.db.user.findAll();
   }
 
-  find(id: number) {
-    return this.db.user.find(id);
+  async findById(id: number) {
+    return await this.db.user.findById(id);
   }
 
-  findOne(userName: string) {
-    return this.db.user.findOne(userName);
+  async findByUsername(userName: string) {
+    return await this.db.user.findByUsername(userName);
   }
 
-  update(id: number, userDTO: UserDTO) {
-    return this.db.user.update(id, userDTO);
+  async update(id: number, userDTO: UserDTO) {
+    if (this.db.user.findById(id) !== null) {
+      throw new HttpException("'User don't exist.'", HttpStatus.BAD_REQUEST);
+    }
+
+    return await this.db.user.update(id, userDTO);
   }
 }

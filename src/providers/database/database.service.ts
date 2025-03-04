@@ -1,4 +1,9 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  OnModuleInit,
+} from '@nestjs/common';
 import DAO from 'src/database/dao';
 import UserRepository from 'src/database/prisma/repos/user.repository';
 
@@ -7,6 +12,13 @@ export class DatabaseService implements OnModuleInit {
   constructor(public readonly user: UserRepository) {}
 
   async onModuleInit() {
-    await new DAO().connect();
+    try {
+      await new DAO().connect();
+    } catch (error) {
+      throw new HttpException(
+        'Fail to connect to the database',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }

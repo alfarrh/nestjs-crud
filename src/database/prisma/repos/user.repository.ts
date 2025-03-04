@@ -22,7 +22,7 @@ export default class UserRepository
     return users;
   }
 
-  async find(id: number): Promise<IUser | null> {
+  async findById(id: number): Promise<IUser | null> {
     const user = await this.user.findUnique({ where: { idUser: id } });
 
     return {
@@ -35,7 +35,7 @@ export default class UserRepository
     };
   }
 
-  async findOne(userName: string): Promise<IUser | null> {
+  async findByUsername(userName: string): Promise<IUser | null> {
     const user = await this.user.findUnique({ where: { userName } });
 
     if (user === null) return null;

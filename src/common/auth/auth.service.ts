@@ -13,7 +13,7 @@ export class AuthService {
   ) {}
   async signIn(signInDTO: SignInDTO) {
     const user = await this.updateUser(
-      await this.usersService.findOne(signInDTO.userName),
+      await this.usersService.findByUsername(signInDTO.userName),
       signInDTO,
     );
 
