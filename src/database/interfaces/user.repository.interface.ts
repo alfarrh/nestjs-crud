@@ -1,6 +1,7 @@
 import IRepository from './repository.interface';
 
-export default interface IUserRepository<T, K> extends IRepository<T, K> {
+export default interface IUserRepository<T> extends IRepository<T> {
   findAll();
   findByUsername(userName: string);
+  getRoles(id: number);
 }

@@ -4,9 +4,11 @@ import { AuthController } from './auth.controller';
 import { UserModule } from 'src/modules/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_CONFIG } from 'src/config/auth.config';
+import { DatabaseModule } from 'src/providers/database/database.module';
 
 @Module({
   imports: [
+    DatabaseModule,
     UserModule,
     JwtModule.register({
       global: true,

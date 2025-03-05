@@ -34,4 +34,8 @@ export class UserService {
 
     return await this.db.user.update(id, userDTO);
   }
+
+  async getGroups(id: number) {
+    return await this.db.user.getRoles(id);
+  }
 }

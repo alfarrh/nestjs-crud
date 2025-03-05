@@ -1,24 +1,11 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  OnModuleInit,
-} from '@nestjs/common';
-import DAO from 'src/database/dao';
+import { Injectable } from '@nestjs/common';
+import AccessRepository from 'src/database/repos/access.repository';
 import UserRepository from 'src/database/repos/user.repository';
 
 @Injectable()
-export class DatabaseService implements OnModuleInit {
-  constructor(public readonly user: UserRepository) {}
-
-  async onModuleInit() {
-    try {
-      await new DAO().connect();
-    } catch (error) {
-      throw new HttpException(
-        'Fail to connect to the database',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
+export class DatabaseService {
+  constructor(
+    public readonly user: UserRepository,
+    public readonly permissions: AccessRepository,
+  ) {}
 }

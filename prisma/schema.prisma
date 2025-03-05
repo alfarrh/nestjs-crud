@@ -14,27 +14,19 @@ datasource db {
 }
 
 model User {
-  idUser       Int         @id @default(autoincrement())
-  userName     String      @unique
-  name         String?
-  email        String
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @default(now())
-  groupCreated Group?      @relation("userCreatedAt")
-  groupUpdated Group?      @relation("userUpdatedAt")
-  group        UserGroup[]
+  idUser    Int         @id @default(autoincrement())
+  userName  String      @unique
+  name      String?
+  email     String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  group     UserGroup[]
 }
 
 model Group {
-  idGroup       Int         @id @default(autoincrement())
-  name          String      @unique
-  createdAt     DateTime    @default(now())
-  userUpdatedAt Int         @unique
-  updatedAt     DateTime    @default(now())
-  userCreatedAt Int         @unique
-  userCreated   User        @relation(name: "userCreatedAt", fields: [userCreatedAt], references: [idUser])
-  userUpdated   User        @relation(name: "userUpdatedAt", fields: [userUpdatedAt], references: [idUser])
-  users         UserGroup[]
+  idGroup Int         @id @default(autoincrement())
+  name    String      @unique
+  users   UserGroup[]
 }
 
 model UserGroup {

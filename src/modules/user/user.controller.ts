@@ -24,6 +24,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('perms/:id')
+  getPermissions(@Param('id') id: number) {
+    return this.userService.getGroups(id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findById(+id);
